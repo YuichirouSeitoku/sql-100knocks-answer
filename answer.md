@@ -65,5 +65,5 @@ select * from store where (not prefecture_cd = '13') and (not floor_area > 900);
 > S-010: 店舗データ（store）から、店舗コード（store_cd）が"S14"で始まるものだけ全項目抽出し、10件表示せよ。
 
 ```
-select * from store where store_cd likd 'S14%';
+select * from store where store_cd like 'S14%';
 ```
