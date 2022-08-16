@@ -67,3 +67,33 @@ select * from store where (not prefecture_cd = '13') and (not floor_area > 900);
 ```
 select * from store where store_cd like 'S14%';
 ```
+
+> S-011: 顧客データ（customer）から顧客ID（customer_id）の末尾が1のものだけ全項目抽出し、10件表示せよ。
+
+```
+select * from customer where customer_id '%1' limit 10;
+```
+
+> S-012: 店舗データ（store）から、住所 (address) に"横浜市"が含まれるものだけ全項目表示せよ。
+
+```
+select * from store where address like '%横浜市%';
+```
+
+> S-013: 顧客データ（customer）から、ステータスコード（status_cd）の先頭がアルファベットのA〜Fで始まるデータを全項目抽出し、10件表示せよ。
+
+```
+select * from customer where status_cd similar to '([A-F])%' limit 10;
+```
+
+> S-014: 顧客データ（customer）から、ステータスコード（status_cd）の末尾が数字の1〜9で終わるデータを全項目抽出し、10件表示せよ。
+
+```
+select * from customer where status_cd similar to '%([1-9])' limit 10;
+```
+
+> S-015: 顧客データ（customer）から、ステータスコード（status_cd）の先頭がアルファベットのA〜Fで始まり、末尾が数字の1〜9で終わるデータを全項目抽出し、10件表示せよ。
+
+```
+select * from customer where status_cd similar to '([A-F])%([1-9])' limit 10;
+```
