@@ -97,3 +97,33 @@ select * from customer where status_cd similar to '%([1-9])' limit 10;
 ```
 select * from customer where status_cd similar to '([A-F])%([1-9])' limit 10;
 ```
+
+> S-016: 店舗データ（store）から、電話番号（tel_no）が3桁-3桁-4桁のデータを全項目表示せよ。
+
+```
+select * from store where tel_no ~ '[0-9]{3}-[0-9]{3}-[0-9]{4}';
+```
+
+> S-017: 顧客データ（customer）を生年月日（birth_day）で高齢順にソートし、先頭から全項目を10件表示せよ。
+
+```
+select * from customer order by birth_day limit 10;
+```
+
+> S-018: 顧客データ（customer）を生年月日（birth_day）で若い順にソートし、先頭から全項目を10件表示せよ。
+
+```
+select * from customer order by birth_day desc limit 10;
+```
+
+> S-019: レシート明細データ（receipt）に対し、1件あたりの売上金額（amount）が高い順にランクを付与し、先頭から10件表示せよ。項目は顧客ID（customer_id）、売上金額（amount）、付与したランクを表示させること。なお、売上金額（amount）が等しい場合は同一順位を付与するものとする。
+
+```
+select customer_id, amount , rank() over(order by amount desc) from receipt order by amount desc limit 10;
+```
+
+> S-020: レシート明細データ（receipt）に対し、1件あたりの売上金額（amount）が高い順にランクを付与し、先頭から10件表示せよ。項目は顧客ID（customer_id）、売上金額（amount）、付与したランクを表示させること。なお、売上金額（amount）が等しい場合でも別順位を付与すること。
+
+```
+select customer_id, amount , row_number() over(order by amount desc) from receipt order by amount desc limit 10;
+```
